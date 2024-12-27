@@ -99,7 +99,7 @@ export default apiInitializer("1.14.0", (api) => {
                     }
                 } else { // It's bdays
                     if (bannerData.num_bdays == 0 && settings.hide_unused_data) {
-                        console.log(bannerData.num_anns == 0 && settings.hide_unused_data);
+                        console.log(bannerData.num_bdays == 0 && settings.hide_unused_data);
                         this.areBothBannersVisible == false;
                     }
                 }
