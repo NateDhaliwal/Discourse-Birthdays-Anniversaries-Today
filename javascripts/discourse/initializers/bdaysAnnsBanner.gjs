@@ -91,20 +91,24 @@ export default apiInitializer("1.14.0", (api) => {
 
             @action
             updateBothBannersVisibility(bannerData) {
+                let isAnnsVisible;
+                let isBdaysVisisble;
                 // Check if it's anns or bdays
                 if (bannerData.num_anns) { // It's anns
                     console.log(bannerData.num_anns);
                     if (bannerData.num_anns == 0 && settings.hide_unused_data) {
                         console.log(`Anns+setting: ${bannerData.num_anns == 0 && settings.hide_unused_data}`);
-                        this.areBothBannersVisible = false;
+                        isAnnsVisible = false;
                     }
                 } else { // It's bdays  
                     console.log(bannerData.num_bdays);
                     if (bannerData.num_bdays == 0 && settings.hide_unused_data) {
                         console.log(`Bdays+setting: ${bannerData.num_bdays == 0 && settings.hide_unused_data}`);
-                        this.areBothBannersVisible = false;
+                        isBdaysVisible = false;
                     }
                 }
+                // Uses an inequality. If not the same (true), banner is shown. If it is the same, inequality is not satisfied, and the banner will be hidden.
+                this.areBothBannersVisible = isAnnsVisible != isBdaysVisible;
                 console.log(this.areBothBannersVisible);
             }
 
@@ -164,7 +168,6 @@ export default apiInitializer("1.14.0", (api) => {
             <template>
                 {{#if this.areBothBannersVisible}}
                     {{#if this.isHomepage}}
-                    
                         <div class='bdaysannsbanner' id='bdaysannsbanner'>
                             {{#if this.annsData.visible}}
                                 <div class='anns'>
