@@ -38,8 +38,8 @@ export default apiInitializer("1.14.0", (api) => {
             @tracked annsDataFinal = null;
             @tracked bdaysDataFinal = null;
             @tracked areBothBannersVisible = true;
-            @tracked isAnnsVisible = null;
-            @tracked isBdaysVisible = null;
+            @tracked isAnnsVisible = true;
+            @tracked isBdaysVisible = true;
 
             @service router;
 
@@ -173,7 +173,7 @@ export default apiInitializer("1.14.0", (api) => {
             //console.log(this.areBothBannersVisible);
 
             <template>
-                <!--{{#if this.areBothBannersVisible}}-->
+                {{#if this.areBothBannersVisible}}
                     {{#if this.isHomepage}}
                         <div class='bdaysannsbanner' id='bdaysannsbanner'>
                             {{#if this.annsData.visible}}
@@ -205,7 +205,7 @@ export default apiInitializer("1.14.0", (api) => {
                             {{/if}}
                         </div>
                     {{/if}}
-                <!--{{/if}}-->
+                {{/if}}
             </template>
         }
     );
