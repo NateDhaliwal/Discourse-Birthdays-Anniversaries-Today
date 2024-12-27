@@ -100,14 +100,16 @@ export default apiInitializer("1.14.0", (api) => {
                     if (bannerData.num_anns == 0 && settings.hide_unused_data) {
                         console.log(`Anns+setting: ${bannerData.num_anns == 0 && settings.hide_unused_data}`);
                         this.isAnnsVisible = false;
-                        console.log(this.isBdaysVisible);
+                        console.log(`isAnnsV: ${this.isAnnsVisible}`);
+                        //console.log(this.isBdaysVisible);
                     }
                 } else { // It's bdays  
                     //console.log(bannerData.num_bdays);
                     if (bannerData.num_bdays == 0 && settings.hide_unused_data) {
                         console.log(`Bdays+setting: ${bannerData.num_bdays == 0 && settings.hide_unused_data}`);
                         this.isBdaysVisible = false;
-                        console.log(this.isAnnsVisible);
+                        console.log(`isBdaysV: ${this.isBdaysVisible}`);
+                        //console.log(this.isAnnsVisible);
                     }
                 }
                 console.log(`isAnnsV: ${this.isAnnsVisible}`);
