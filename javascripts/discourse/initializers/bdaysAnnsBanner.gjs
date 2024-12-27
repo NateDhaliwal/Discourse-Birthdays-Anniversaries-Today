@@ -96,7 +96,7 @@ export default apiInitializer("1.14.0", (api) => {
             updateBothBannersVisibility(bannerData) {
                 // Check if it's anns or bdays
                 if (bannerData.num_anns) { // It's anns
-                    //console.log(bannerData.num_anns);
+                    console.log(bannerData.num_anns);
                     if (bannerData.num_anns == 0 && settings.hide_unused_data) {
                         console.log(`Anns+setting: ${bannerData.num_anns == 0 && settings.hide_unused_data}`);
                         this.isAnnsVisible = false;
@@ -104,7 +104,7 @@ export default apiInitializer("1.14.0", (api) => {
                         //console.log(this.isBdaysVisible);
                     }
                 } else { // It's bdays  
-                    //console.log(bannerData.num_bdays);
+                    console.log(bannerData.num_bdays);
                     if (bannerData.num_bdays == 0 && settings.hide_unused_data) {
                         console.log(`Bdays+setting: ${bannerData.num_bdays == 0 && settings.hide_unused_data}`);
                         this.isBdaysVisible = false;
@@ -173,7 +173,7 @@ export default apiInitializer("1.14.0", (api) => {
             //console.log(this.areBothBannersVisible);
 
             <template>
-                {{#if this.areBothBannersVisible}}
+                <!--{{#if this.areBothBannersVisible}}-->
                     {{#if this.isHomepage}}
                         <div class='bdaysannsbanner' id='bdaysannsbanner'>
                             {{#if this.annsData.visible}}
@@ -205,7 +205,7 @@ export default apiInitializer("1.14.0", (api) => {
                             {{/if}}
                         </div>
                     {{/if}}
-                {{/if}}
+                <!--{{/if}}-->
             </template>
         }
     );
