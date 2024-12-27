@@ -94,10 +94,12 @@ export default apiInitializer("1.14.0", (api) => {
                 // Check if it's anns or bdays
                 if (bannerData.num_anns) { // It's anns
                     if (bannerData.num_anns == 0 && settings.hide_unused_data) {
+                        console.log(bannerData.num_anns == 0 && settings.hide_unused_data);
                         this.areBothBannersVisible == false;
                     }
                 } else { // It's bdays
                     if (bannerData.num_bdays == 0 && settings.hide_unused_data) {
+                        console.log(bannerData.num_anns == 0 && settings.hide_unused_data);
                         this.areBothBannersVisible == false;
                     }
                 }
@@ -121,7 +123,7 @@ export default apiInitializer("1.14.0", (api) => {
                         this.annsDataFinal.visible = true;
                     }
                     
-                    this.updateBothBannersVisibility(this.annsDataFinal);
+                    //this.updateBothBannersVisibility(this.annsDataFinal);
                     // If the data is not loaded yet, return null or any default value
                     return this.annsDataFinal;
                 }
@@ -145,7 +147,7 @@ export default apiInitializer("1.14.0", (api) => {
                         this.bdaysDataFinal.visible = true;
                     }
 
-                    this.updateBothBannersVisibility(this.bdaysDataFinal);
+                    //this.updateBothBannersVisibility(this.bdaysDataFinal);
                     // If the data is not loaded yet, return null or any default value
                     return this.bdaysDataFinal;
                 }
