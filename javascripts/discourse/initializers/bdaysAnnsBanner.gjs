@@ -38,6 +38,8 @@ export default apiInitializer("1.14.0", (api) => {
             @tracked annsDataFinal = null;
             @tracked bdaysDataFinal = null;
             @tracked areBothBannersVisible = true;
+            @tracked isAnnsVisible = null;
+            @tracked isBdaysVisible = null;
             @service router;
 
             constructor() {
@@ -91,24 +93,22 @@ export default apiInitializer("1.14.0", (api) => {
 
             @action
             updateBothBannersVisibility(bannerData) {
-                var isAnnsVisible;
-                var isBdaysVisible;
                 // Check if it's anns or bdays
                 if (bannerData.num_anns) { // It's anns
                     console.log(bannerData.num_anns);
                     if (bannerData.num_anns == 0 && settings.hide_unused_data) {
                         console.log(`Anns+setting: ${bannerData.num_anns == 0 && settings.hide_unused_data}`);
-                        isAnnsVisible = false;
+                        this.isAnnsVisible = false;
                     }
                 } else { // It's bdays  
                     console.log(bannerData.num_bdays);
                     if (bannerData.num_bdays == 0 && settings.hide_unused_data) {
                         console.log(`Bdays+setting: ${bannerData.num_bdays == 0 && settings.hide_unused_data}`);
-                        isBdaysVisible = false;
+                        this.isBdaysVisible = false;
                     }
                 }
                 // Uses an inequality. If not the same (true), banner is shown. If it is the same, inequality is not satisfied, and the banner will be hidden.
-                this.areBothBannersVisible = isAnnsVisible != isBdaysVisible;
+                this.areBothBannersVisible = this.isAnnsVisible != this.isBdaysVisible;
                 console.log(this.areBothBannersVisible);
             }
 
