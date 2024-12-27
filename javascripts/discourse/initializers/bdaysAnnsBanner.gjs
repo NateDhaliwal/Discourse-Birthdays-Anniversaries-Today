@@ -93,11 +93,14 @@ export default apiInitializer("1.14.0", (api) => {
             updateBothBannersVisibility(bannerData) {
                 // Check if it's anns or bdays
                 if (bannerData.num_anns) { // It's anns
+                    console.log(bannerData.num_anns);
                     if (bannerData.num_anns == 0 && settings.hide_unused_data) {
+                        
                         console.log(bannerData.num_anns == 0 && settings.hide_unused_data);
                         this.areBothBannersVisible == false;
                     }
-                } else { // It's bdays
+                } else { // It's bdays  
+                    console.log(bannerData.num_bdays);
                     if (bannerData.num_bdays == 0 && settings.hide_unused_data) {
                         console.log(bannerData.num_bdays == 0 && settings.hide_unused_data);
                         this.areBothBannersVisible == false;
