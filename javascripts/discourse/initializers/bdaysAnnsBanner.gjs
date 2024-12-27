@@ -61,6 +61,7 @@ export default apiInitializer("1.14.0", (api) => {
                 }
         
                 this.annsDataFinal = {'num_anns': numberOfAnns, 'anns_users': allAnnsUsernames, 'visible': true, 'isFilled': true};
+                this.updateBothBannersVisibility(this.annsDataFinal);
             }
 
             // Asynchronously fetch the data and update tracked property
@@ -83,7 +84,7 @@ export default apiInitializer("1.14.0", (api) => {
                 }
             
                 this.bdaysDataFinal = {'num_bdays': numberOfBdays, 'bdays_users': allBdaysUsernames, 'visible': true, 'isFilled': true};
-                
+                this.updateBothBannersVisibility(this.bdaysDataFinal);
                 //console.log(annsDataFinal);  // Just to verify the result
             }
 
@@ -155,6 +156,7 @@ export default apiInitializer("1.14.0", (api) => {
                 return currentRouteName === `discovery.${defaultHomepage()}`;
             }
             //console.log(this.areBothBannersVisible);
+
             <template>
                 {{#if this.areBothBannersVisible}}
                     {{#if this.isHomepage}}
