@@ -115,7 +115,16 @@ export default apiInitializer("1.14.0", (api) => {
                 console.log(`isAnnsV: ${this.isAnnsVisible}`);
                 console.log(`isBdaysV: ${this.isBdaysVisible}`);
                 // Uses an inequality. If not the same (true), banner is shown. If it is the same, inequality is not satisfied, and the banner will be hidden.
-                this.areBothBannersVisible = this.isAnnsVisible == this.isBdaysVisible;
+                if (this.isAnnsVisible && this.isBdaysVisible) {
+                    this.areBothBannersVisible = true;
+                } else if (this.isAnnsVisible && !this.isBdaysVisible) {
+                    this.areBothBannersVisible = true;
+                } else if (!this.isAnnsVisible && this.isBdaysVisible) {
+                    this.areBothBannersVisible = true;
+                } else if (!this.isAnnsVisible && !this.isBdaysVisible) {
+                    this.areBothBannersVisible = false;
+                }
+                //this.areBothBannersVisible = this.isAnnsVisible == this.isBdaysVisible;
                 console.log(this.areBothBannersVisible);
             }
 
