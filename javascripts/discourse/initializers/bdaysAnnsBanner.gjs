@@ -91,8 +91,8 @@ export default apiInitializer("1.14.0", (api) => {
 
             @action
             updateBothBannersVisibility(bannerData) {
-                let isAnnsVisible;
-                let isBdaysVisisble;
+                var isAnnsVisible;
+                var isBdaysVisisble;
                 // Check if it's anns or bdays
                 if (bannerData.num_anns) { // It's anns
                     console.log(bannerData.num_anns);
