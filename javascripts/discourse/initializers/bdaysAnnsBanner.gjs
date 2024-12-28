@@ -97,6 +97,7 @@ export default apiInitializer("1.14.0", (api) => {
                 console.log(bannerData);
                 // Check if it's anns or bdays
                 if (bannerData.num_anns) { // It's anns
+                    console.log('Anns:')
                     console.log(bannerData.num_anns);
                     if (bannerData.num_anns == 0 && settings.hide_unused_data) {
                         console.log(`Anns+setting: ${bannerData.num_anns == 0 && settings.hide_unused_data}`);
