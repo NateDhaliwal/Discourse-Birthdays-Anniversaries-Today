@@ -38,8 +38,8 @@ export default apiInitializer("1.14.0", (api) => {
             @tracked annsDataFinal = null;
             @tracked bdaysDataFinal = null;
             @tracked areBothBannersVisible = true;
-            @tracked isAnnsVisible = true;
-            @tracked isBdaysVisible = true;
+            @tracked isAnnsVisible = false;
+            @tracked isBdaysVisible = false;
 
             @service router;
 
