@@ -32,8 +32,8 @@ export default apiInitializer("1.14.0", (api) => {
             @action
             async fetchAnnsData() {
                 const response = await fetch("/cakeday/anniversaries/today.json");
-                const json = response.json();
-        
+                const json = await response.json();
+                console.log(json);
                 let numberOfAnns = parseInt(json['total_rows_anniversaries']);
                 let allAnns = json['anniversaries']; // Is a list of dicts
                 let allAnnsUsernames = [];
@@ -54,12 +54,11 @@ export default apiInitializer("1.14.0", (api) => {
             
                 // Fetch birthdays data
                 const response = await fetch("/cakeday/birthdays/today.json");
-                const json = response.json();
-            
+                const json = await response.json();
+                
                 // Run the logic to process the data
                 let numberOfBdays = parseInt(json['total_rows_birthdays']);
                 let allBdays = json['birthdays']; // Is a list of dicts
-                console.log(allBdays);
                 let allBdaysUsernames = [];
             
                 for (let bdayUserdata of allBdays) {
