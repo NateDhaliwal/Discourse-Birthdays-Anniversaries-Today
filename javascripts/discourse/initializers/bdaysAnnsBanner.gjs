@@ -31,8 +31,9 @@ export default apiInitializer("1.14.0", (api) => {
             // Asynchronously fetch the data and update tracked property
             @action
             fetchAnnsData() {
-                const response = ajax("/cakeday/anniversaries/today.json", {type: "GET"});
-                const json = response.json();
+                const json = ajax("/cakeday/anniversaries/today.json", {type: "GET"});
+                console.log(json);
+                //const json = response.json();
         
                 let numberOfAnns = parseInt(json['total_rows_anniversaries']);
                 let allAnns = json['anniversaries']; // Is a list of dicts
@@ -53,8 +54,9 @@ export default apiInitializer("1.14.0", (api) => {
                 let bdaysDataFinal;
             
                 // Fetch birthdays data
-                const response = ajax("/cakeday/birthdays/today.json", {type: "GET"});
-                const json = response.json();
+                const json = ajax("/cakeday/birthdays/today.json", {type: "GET"});
+                console.log(json);
+                //const json = response.json();
             
                 // Run the logic to process the data
                 let numberOfBdays = parseInt(json['total_rows_birthdays']);
