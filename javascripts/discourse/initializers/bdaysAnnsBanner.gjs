@@ -59,6 +59,7 @@ export default apiInitializer("1.14.0", (api) => {
                 // Run the logic to process the data
                 let numberOfBdays = parseInt(json['total_rows_birthdays']);
                 let allBdays = json['birthdays']; // Is a list of dicts
+                console.log(allBdays);
                 let allBdaysUsernames = [];
             
                 for (let bdayUserdata of allBdays) {
