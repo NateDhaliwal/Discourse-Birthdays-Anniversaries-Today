@@ -30,8 +30,8 @@ export default apiInitializer("1.14.0", (api) => {
         
             // Asynchronously fetch the data and update tracked property
             @action
-            fetchAnnsData() {
-                const response = fetch("/cakeday/anniversaries/today.json");
+            async fetchAnnsData() {
+                const response = await fetch("/cakeday/anniversaries/today.json");
                 const json = response.json();
         
                 let numberOfAnns = parseInt(json['total_rows_anniversaries']);
@@ -48,12 +48,12 @@ export default apiInitializer("1.14.0", (api) => {
 
             // Asynchronously fetch the data and update tracked property
             @action
-            fetchBdaysData() {
+            async fetchBdaysData() {
                  // Declare bdaysDataFinal here
                 let bdaysDataFinal;
             
                 // Fetch birthdays data
-                const response = fetch("/cakeday/birthdays/today.json");
+                const response = await fetch("/cakeday/birthdays/today.json");
                 const json = response.json();
             
                 // Run the logic to process the data
