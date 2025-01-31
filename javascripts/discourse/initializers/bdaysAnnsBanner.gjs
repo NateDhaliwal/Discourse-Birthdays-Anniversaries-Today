@@ -104,23 +104,24 @@ export default apiInitializer("1.14.0", (api) => {
             // Getter for the data
             get annsData() {
                 //return this.annsDataFinal;
-                if (this.annsDataFinal.num_anns == 0) {
-                    if (settings.hide_unused_data) {
-                        this.annsDataFinal.isFilled = false;
-                        this.annsDataFinal.visible = false;
-                        this.isAnnsVisible = false;
+                if (this.annsDataFinal !== null) {
+                    if (this.annsDataFinal.num_anns == 0) {
+                        if (settings.hide_unused_data) {
+                            this.annsDataFinal.isFilled = false;
+                            this.annsDataFinal.visible = false;
+                            this.isAnnsVisible = false;
+                        } else {
+                            this.annsDataFinal.isFilled = false;
+                        }
                     } else {
-                        this.annsDataFinal.isFilled = false;
+                        this.annsDataFinal.isFilled = true;
+                        this.annsDataFinal.visible = true;
                     }
-                } else {
-                    this.annsDataFinal.isFilled = true;
-                    this.annsDataFinal.visible = true;
+                    
+                    //this.updateBothBannersVisibility(this.annsDataFinal);
+                    // If the data is not loaded yet, return null or any default value
+                    return this.annsDataFinal;
                 }
-                
-                //this.updateBothBannersVisibility(this.annsDataFinal);
-                // If the data is not loaded yet, return null or any default value
-                return this.annsDataFinal;
-            
             }
             
             // Getter for the data
