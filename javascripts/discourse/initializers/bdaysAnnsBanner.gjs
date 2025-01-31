@@ -31,9 +31,8 @@ export default apiInitializer("1.14.0", (api) => {
             // Asynchronously fetch the data and update tracked property
             @action
             fetchAnnsData() {
-                const json = ajax("/cakeday/anniversaries/today.json", {type: "GET"});
-                console.log(json);
-                //const json = response.json();
+                const response = fetch("/cakeday/anniversaries/today.json");
+                const json = response.json();
         
                 let numberOfAnns = parseInt(json['total_rows_anniversaries']);
                 let allAnns = json['anniversaries']; // Is a list of dicts
@@ -54,9 +53,8 @@ export default apiInitializer("1.14.0", (api) => {
                 let bdaysDataFinal;
             
                 // Fetch birthdays data
-                const json = ajax("/cakeday/birthdays/today.json", {type: "GET"});
-                console.log(json);
-                //const json = response.json();
+                const response = fetch("/cakeday/birthdays/today.json");
+                const json = response.json();
             
                 // Run the logic to process the data
                 let numberOfBdays = parseInt(json['total_rows_birthdays']);
@@ -110,6 +108,7 @@ export default apiInitializer("1.14.0", (api) => {
                     if (settings.hide_unused_data) {
                         this.annsDataFinal.isFilled = false;
                         this.annsDataFinal.visible = false;
+                        this.isAnnsVisible = false;
                     } else {
                         this.annsDataFinal.isFilled = false;
                     }
@@ -132,6 +131,9 @@ export default apiInitializer("1.14.0", (api) => {
                         if (settings.hide_unused_data) {
                             this.bdaysDataFinal.isFilled = false;
                             this.bdaysDataFinal.visible = false;
+                            this.isBdaysVisible = false;
+                            console.log(`this.isAnnsVisible: ${this.isAnnsVisible}`);
+                            console.log(`this.isBdaysVisible: ${this.isBdayVisible}`);
                         } else {
                             this.bdaysDataFinal.isFilled = false;
                             this.bdaysDataFinal.visible = true;
