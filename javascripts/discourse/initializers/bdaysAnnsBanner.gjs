@@ -1,37 +1,16 @@
 import Component from "@glimmer/component";
 import { apiInitializer } from "discourse/lib/api";
+import { ajax } from "discourse/lib/ajax";
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { inject as service } from "@ember/service";
 import { defaultHomepage } from "discourse/lib/utilities";
-
-
-/*
-const xhr = new XMLHttpRequest();
-xhr.open("GET", "/cakeday/anniversaries/today.json");
-xhr.send();
-xhr.responseType = "json";
-xhr.onload = () => {
-    if (xhr.readyState == 4 && xhr.status == 200) {
-        let resp = xhr.response;
-        let numberOfAnns = resp['total_rows_anniversaires'];
-        let allAnns = resp['anniversaries']; // Is a list of dicts
-        console.log(allAnns);
-        let allAnnsUsernames = [];
-        for (var annUserdata in allAnns) {
-            console.log(allAnns[annUserdata]['username']);
-            allAnnsUsernames.push(allAnns[annUserdata]['username']);
-        }
-        var annsOfData = {'num_anns': numberOfAnns, 'anns_users': allAnnsUsernames};
-        
-    }
-};
-return annsOfData;
-*/
+import { getOwner } from '@ember/application';
 
 
 export default apiInitializer("1.14.0", (api) => {
     //const banner_location = settings.banner_location
+    console.log(getOwner(this));
     api.renderInOutlet(
         settings.banner_location,
         class BdaysAnnsBanner extends Component {
@@ -51,9 +30,9 @@ export default apiInitializer("1.14.0", (api) => {
         
             // Asynchronously fetch the data and update tracked property
             @action
-            async fetchAnnsData() {
-                const response = await fetch("/cakeday/anniversaries/today.json");
-                const json = await response.json();
+            fetchAnnsData() {
+                const response = ajax("/cakeday/anniversaries/today.json", {type: "GET"});
+                const json = response.json();
         
                 let numberOfAnns = parseInt(json['total_rows_anniversaries']);
                 let allAnns = json['anniversaries']; // Is a list of dicts
@@ -69,13 +48,13 @@ export default apiInitializer("1.14.0", (api) => {
 
             // Asynchronously fetch the data and update tracked property
             @action
-            async fetchBdaysData() {
+            fetchBdaysData() {
                  // Declare bdaysDataFinal here
                 let bdaysDataFinal;
             
                 // Fetch birthdays data
-                const response = await fetch("/cakeday/birthdays/today.json");
-                const json = await response.json();
+                const response = ajax("/cakeday/birthdays/today.json", {type: "GET"});
+                const json = response.json();
             
                 // Run the logic to process the data
                 let numberOfBdays = parseInt(json['total_rows_birthdays']);
