@@ -102,7 +102,7 @@ export default apiInitializer("1.14.0", (api) => {
 
             
             // Getter for the data
-            get annsData() {
+            async get annsData() {
                 //return this.annsDataFinal;
                 if (this.annsDataFinal !== null) {
                     if (this.annsDataFinal.num_anns == 0) {
@@ -125,7 +125,7 @@ export default apiInitializer("1.14.0", (api) => {
             }
             
             // Getter for the data
-            get bdaysData() {
+            async get bdaysData() {
                 //return this.bdaysDataFinal;
                 if (this.bdaysDataFinal !== null) {
                     if (this.bdaysDataFinal.num_bdays == 0) {
@@ -134,7 +134,7 @@ export default apiInitializer("1.14.0", (api) => {
                             this.bdaysDataFinal.visible = false;
                             this.isBdaysVisible = false;
                             console.log(`this.isAnnsVisible: ${this.isAnnsVisible}`);
-                            console.log(`this.isBdaysVisible: ${this.isBdayVisible}`);
+                            console.log(`this.isBdaysVisible: ${this.isBdaysVisible}`);
                         } else {
                             this.bdaysDataFinal.isFilled = false;
                             this.bdaysDataFinal.visible = true;
