@@ -102,7 +102,7 @@ export default apiInitializer("1.14.0", (api) => {
 
             
             // Getter for the data
-            async get annsData() {
+            get annsData() {
                 //return this.annsDataFinal;
                 if (this.annsDataFinal !== null) {
                     if (this.annsDataFinal.num_anns == 0) {
@@ -125,7 +125,7 @@ export default apiInitializer("1.14.0", (api) => {
             }
             
             // Getter for the data
-            async get bdaysData() {
+            get bdaysData() {
                 //return this.bdaysDataFinal;
                 if (this.bdaysDataFinal !== null) {
                     if (this.bdaysDataFinal.num_bdays == 0) {
