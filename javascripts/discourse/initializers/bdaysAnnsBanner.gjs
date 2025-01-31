@@ -151,7 +151,7 @@ export default apiInitializer("1.14.0", (api) => {
                 return currentRouteName === `discovery.${defaultHomepage()}`;
             }
             //console.log(this.areBothBannersVisible);
-            console.log(api.container.lookup("service:router"));
+            
             <template>
                 {{#if this.areBothBannersVisible}}
                     {{#if this.isHomepage}}
