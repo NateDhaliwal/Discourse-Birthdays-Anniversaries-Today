@@ -10,7 +10,7 @@ import { getOwner } from '@ember/application';
 
 export default apiInitializer("1.14.0", (api) => {
     //const banner_location = settings.banner_location
-    console.log(getOwner(this));
+    
     api.renderInOutlet(
         settings.banner_location,
         class BdaysAnnsBanner extends Component {
@@ -151,7 +151,7 @@ export default apiInitializer("1.14.0", (api) => {
                 return currentRouteName === `discovery.${defaultHomepage()}`;
             }
             //console.log(this.areBothBannersVisible);
-
+            console.log(getOwner(this));
             <template>
                 {{#if this.areBothBannersVisible}}
                     {{#if this.isHomepage}}
