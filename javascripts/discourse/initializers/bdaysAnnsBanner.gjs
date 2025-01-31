@@ -153,7 +153,7 @@ export default apiInitializer("1.14.0", (api) => {
             //console.log(this.areBothBannersVisible);
 
             <template>
-                {{#if this.areBothBannersVisible()}}
+                {{#if this.areBothBannersVisible}}
                     {{#if this.isHomepage}}
                         <div class='bdaysannsbanner' id='bdaysannsbanner'>
                             {{#if this.annsData.visible}}
