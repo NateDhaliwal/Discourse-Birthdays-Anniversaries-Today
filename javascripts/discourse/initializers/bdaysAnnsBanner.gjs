@@ -32,6 +32,7 @@ export default apiInitializer("1.14.0", (api) => {
 
         let numberOfAnns = parseInt(response['total_rows_anniversaries']);
         let allAnns = response['anniversaries']; // Is a list of dicts
+        console.log(allAnns);
         let allAnnsUsernames = [];
 
         for (let annUserdata of allAnns) {
@@ -39,7 +40,6 @@ export default apiInitializer("1.14.0", (api) => {
         }
 
         this.annsDataFinal = {'num_anns': numberOfAnns, 'anns_users': allAnnsUsernames, 'isFilled': true};
-        this.updateBothBannersVisibility();
       }
 
       // Asynchronously fetch the data and update tracked property
@@ -61,28 +61,11 @@ export default apiInitializer("1.14.0", (api) => {
         }
     
         this.bdaysDataFinal = {'num_bdays': numberOfBdays, 'bdays_users': allBdaysUsernames, 'isFilled': true};
-        this.updateBothBannersVisibility();
       }
 
 
       @action
-      updateBothBannersVisibility(bannerData) {
-        console.log(bannerData.num_anns);
-        // Check if it's anns or bdays
-        if (bannerData.num_anns) { // It's anns
-          console.log('Anns:')
-          console.log(bannerData.num_anns);
-          if (bannerData.num_anns == 0 && settings.hide_unused_data) {
-            console.log(`Anns+setting: ${bannerData.num_anns == 0 && settings.hide_unused_data}`);
-            this.isAnnsVisible = false;
-            console.log(`isAnnsV: ${this.isAnnsVisible}`);
-            //console.log(this.isBdaysVisible);
-          }
-        } else { // It's bdays
-          if (bannerData.num_bdays == 0 && settings.hide_unused_data) {
-            this.isBdaysVisible = false;
-          }
-        }
+      updateBothBannersVisibility() {
         // Uses an inequality. If not the same (true), banner is shown. If it is the same, inequality is not satisfied, and the banner will be hidden.
         this.areBothBannersVisible = !(this.isAnnsVisible === false && this.isBdaysVisible === false); // Or: this.areBothBannersVisible = this.isAnnsVisible || this.isBdaysVisible;
       }
