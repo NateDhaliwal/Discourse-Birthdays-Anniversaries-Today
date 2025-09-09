@@ -2,12 +2,11 @@ import Component from "@glimmer/component";
 import { apiInitializer } from "discourse/lib/api";
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
-import { inject as service } from "@ember/service";
+import { service } from "@ember/service";
 import { defaultHomepage } from "discourse/lib/utilities";
+import ajax from "discourse/lib/ajax";
 
-
-export default apiInitializer("1.14.0", (api) => {
-  //const banner_location = settings.banner_location
+export default apiInitializer((api) => {
   api.renderInOutlet(
     settings.banner_location,
     class BdaysAnnsBanner extends Component {
@@ -24,26 +23,22 @@ export default apiInitializer("1.14.0", (api) => {
         this.fetchAnnsData(); // Automatically fetch on initialization
         this.fetchBdaysData();
       }
-  
-      // Asynchronously fetch the data and update tracked property
-      @action
-      async fetchAnnsData() {
-        const response = await fetch("/cakeday/anniversaries/today.json");
 
-        let numberOfAnns = parseInt(response['total_rows_anniversaries']);
-        let allAnns = response['anniversaries']; // Is a list of dicts
+      async fetchAnnsData() {
+        const response = await ajax("/cakeday/anniversaries/today");
+
+        let numberOfAnns = parseInt(response.total_rows_anniversaries);
+        let allAnns = response.anniversaries; // Is a list of dicts
         console.log(allAnns);
         let allAnnsUsernames = [];
 
         for (let annUserdata of allAnns) {
-            allAnnsUsernames.push(annUserdata['username']);
+          allAnnsUsernames.push(annUserdata['username']);
         }
 
         this.annsDataFinal = {'num_anns': numberOfAnns, 'anns_users': allAnnsUsernames, 'isFilled': true};
       }
 
-      // Asynchronously fetch the data and update tracked property
-      @action
       async fetchBdaysData() {
         // Declare bdaysDataFinal here
         let bdaysDataFinal;
@@ -52,12 +47,12 @@ export default apiInitializer("1.14.0", (api) => {
         const response = await fetch("/cakeday/birthdays/today.json");
     
         // Run the logic to process the data
-        let numberOfBdays = parseInt(response['total_rows_birthdays']);
-        let allBdays = response['birthdays']; // Is a list of dicts
+        let numberOfBdays = parseInt(response.total_rows_birthdays);
+        let allBdays = response.birthdays; // Is a list of dicts
         let allBdaysUsernames = [];
     
         for (let bdayUserdata of allBdays) {
-            allBdaysUsernames.push(bdayUserdata['username']);
+          allBdaysUsernames.push(bdayUserdata['username']);
         }
     
         this.bdaysDataFinal = {'num_bdays': numberOfBdays, 'bdays_users': allBdaysUsernames, 'isFilled': true};
