@@ -4,8 +4,8 @@ import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
 import { service } from "@ember/service";
 import { defaultHomepage } from "discourse/lib/utilities";
-import { gt, and } from "truth-helpers";
-import ajax from "discourse/lib/ajax";
+import { and, gt } from "truth-helpers";
+import { ajax } from "discourse/lib/ajax";
 
 export default apiInitializer((api) => {
   api.renderInOutlet(
