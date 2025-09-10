@@ -9,7 +9,7 @@ import { on } from "@ember/modifier";
 import { ajax } from "discourse/lib/ajax";
 
 export default class BirthdaysAnniversariesBanner extends Component {
-  // Init data
+  // Init tracked data
   @tracked num_anns;
   @tracked anns_list;
   @tracked num_bdays;
@@ -25,23 +25,17 @@ export default class BirthdaysAnniversariesBanner extends Component {
   }
 
   async fetchAnnsData() {
-    setTimeout(() => {
-      console.log("Executed after 2 seconds");
-    }, 2000); // 2000 milliseconds = 2 seconds
     const annsData = await ajax("/cakeday/anniversaries/today");
     const numAnns = annsData.total_rows_anniversaries;
     const usersAnns = [];
     annsData.anniversaries.forEach((anns) => {
-      usersAnns.push(settings.show_username? anns.username : anns.name);
+      usersAnns.push(anns.username);
     });
     this.num_anns = numAnns;
     this.anns_list = usersAnns;
   }
 
   async fetchBdaysData() {
-    setTimeout(() => {
-      console.log("Executed after 2 seconds");
-    }, 2000); // 2000 milliseconds = 2 seconds
     const bdaysData = await ajax("/cakeday/birthdays/today");
     const numBdays = bdaysData.total_rows_birthdays;
     const usersBdays = [];
@@ -50,10 +44,7 @@ export default class BirthdaysAnniversariesBanner extends Component {
     });
     this.num_bdays = numBdays;
     this.bdays_list = usersBdays;
-    setTimeout(() => {
-      console.log("Executed after 2 seconds");
-    }, 10000); // 2000 milliseconds = 2 seconds
-    this.loading = false;
+    this.loading = false; // Birthdays are fetched after Anniversaries, so we can set loaded to false once we get all the data
   }
 
   get isHomepage() {
