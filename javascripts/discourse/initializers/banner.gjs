@@ -57,6 +57,9 @@ export default apiInitializer((api) => {
       }  
 
       <template>
+        {{this.showBanner}}
+        {{this.num_anns}}
+        {{this.num_bdays}}
         {{#if (and this.showBanner this.isHomepage) }}
           <div class='bdaysannsbanner' id='birthdays_anniversaries_banner'>
             {{#if (gt this.num_anns 0) }}
