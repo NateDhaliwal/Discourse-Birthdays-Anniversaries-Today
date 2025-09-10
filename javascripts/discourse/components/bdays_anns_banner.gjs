@@ -3,22 +3,24 @@ import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
 import { service } from "@ember/service";
 import { defaultHomepage } from "discourse/lib/utilities";
+import ConditionalLoadingSpinner from "discourse/components/conditional-loading-spinner";
 import { and, gt } from "truth-helpers";
 import { on } from "@ember/modifier";
 import { ajax } from "discourse/lib/ajax";
 
 export default class BirthdaysAnniversariesBanner extends Component {
   // Init data
-  num_anns = 0;
-  anns_list = [];
-  num_bdays = 0;
-  bdays_list = [];
+  @tracked num_anns;
+  @tracked anns_list;
+  @tracked num_bdays;
+  @tracked bdays_list;
+  @tracked loading = true;
 
   @service router;
 
   constructor() {
     super(...arguments);
-    this.fetchAnnsData(); // Automatically fetch on initialization
+    this.fetchAnnsData();
     this.fetchBdaysData();
   }
 
@@ -29,11 +31,13 @@ export default class BirthdaysAnniversariesBanner extends Component {
     const usersAnns = [];
     annsData.anniversaries.forEach((anns) => {
       usersAnns.push(settings.show_username? anns.username : anns.name);
-    })
+    });
     this.num_anns = numAnns;
     this.anns_list = usersAnns;
     console.log(numAnns);
     console.log(usersAnns);
+    console.log(this.num_anns);
+    console.log(this.anns_list);
   }
 
   async fetchBdaysData() {
@@ -43,11 +47,14 @@ export default class BirthdaysAnniversariesBanner extends Component {
     const usersBdays = [];
     bdaysData.birthdays.forEach((anns) => {
       usersAnns.push(settings.show_username? anns.username : anns.name);
-    })
+    });
     this.num_bdays = numBdays;
     this.bdays_list = usersBdays;
     console.log(numBdays);
     console.log(usersBdays);
+    console.log(this.num_bdays);
+    console.log(this.bdays_list);
+    this.loading = false;
   }
 
   get isHomepage() {
@@ -62,11 +69,12 @@ export default class BirthdaysAnniversariesBanner extends Component {
   }  
 
   <template>
-    <div {{on "click" this.fetchAnnsData}}>
+    <div>
       {{this.showBanner}}
       {{this.num_anns}}
       {{this.num_bdays}}
       {{this.isHomepage}}
+      <ConditionalLoadingSpinner @condition={{this.loading}} />
       {{#if (and this.showBanner this.isHomepage) }}
         <div class='bdaysannsbanner' id='birthdays_anniversaries_banner'>
           {{#if (gt this.num_anns 0) }}
