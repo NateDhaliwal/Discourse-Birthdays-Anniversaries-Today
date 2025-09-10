@@ -34,10 +34,6 @@ export default class BirthdaysAnniversariesBanner extends Component {
     });
     this.num_anns = numAnns;
     this.anns_list = usersAnns;
-    console.log(numAnns);
-    console.log(usersAnns);
-    console.log(this.num_anns);
-    console.log(this.anns_list);
   }
 
   async fetchBdaysData() {
@@ -50,10 +46,6 @@ export default class BirthdaysAnniversariesBanner extends Component {
     });
     this.num_bdays = numBdays;
     this.bdays_list = usersBdays;
-    console.log(numBdays);
-    console.log(usersBdays);
-    console.log(this.num_bdays);
-    console.log(this.bdays_list);
     this.loading = false;
   }
 
@@ -63,17 +55,11 @@ export default class BirthdaysAnniversariesBanner extends Component {
   }
 
   get showBanner() {
-    this.fetchAnnsData();
-    this.fetchBdaysData();
     return this.num_bdays > 0 || this.num_anns > 0;
   }  
 
   <template>
     <div>
-      {{this.showBanner}}
-      {{this.num_anns}}
-      {{this.num_bdays}}
-      {{this.isHomepage}}
       <ConditionalLoadingSpinner @condition={{this.loading}} />
       {{#if (and this.showBanner this.isHomepage) }}
         <div class='bdaysannsbanner' id='birthdays_anniversaries_banner'>
