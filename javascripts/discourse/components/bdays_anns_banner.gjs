@@ -54,7 +54,15 @@ export default class BirthdaysAnniversariesBanner extends Component {
 
   get showBanner() {
     return this.num_bdays > 0 || this.num_anns > 0;
-  }  
+  }
+
+  get anns_text() {
+    return settings.anniversaries_text.replace("%{count}", this.num_anns);
+  }
+
+  get bdays_text() {
+    return settings.birthdays_text.replace("%{count}", this.num_bdays);
+  }
 
   <template>
     <div>
@@ -63,7 +71,7 @@ export default class BirthdaysAnniversariesBanner extends Component {
         <div class='bdaysannsbanner' id='birthdays_anniversaries_banner'>
           {{#if (gt this.num_anns 0) }}
             <div class='anns'>
-              <p>{{this.num_anns}} users are celebrating their anniversary today!</p>
+              <p>{{this.anns_text}}</p>
               {{#each this.anns_list as |username_name|}}
                 <span><a class='mention'>{{username_name}}</a></span>
               {{/each}}
@@ -72,7 +80,7 @@ export default class BirthdaysAnniversariesBanner extends Component {
           <br />
           {{#if (gt this.num_bdays 0) }}
             <div class='bdays'>
-              <p>{{this.num_bdays}} users are celebrating their birthday today!</p>
+              <p>{{this.bdays_text}}</p>
               {{#each this.bdays_list as |username_name|}}
                 <span><a class='mention'>{{username_name}}</a></span>
               {{/each}}
