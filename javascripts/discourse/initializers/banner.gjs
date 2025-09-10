@@ -53,7 +53,7 @@ export default apiInitializer((api) => {
       }
 
       get showBanner() {
-        return this.num_bdays > 0 && this.num_anns > 0;
+        return this.num_bdays > 0 || this.num_anns > 0;
       }  
 
       <template>
