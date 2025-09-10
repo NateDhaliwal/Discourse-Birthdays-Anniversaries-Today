@@ -16,8 +16,3 @@ banner_background_color:
     default: "var(--tertiary-low)"
     type: string
     description: "The background color of the banner."
-
-show_username:
-    default: true
-    type: bool
-    description: "Show usernames of users instead of names in the banner"
