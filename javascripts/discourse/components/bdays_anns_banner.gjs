@@ -4,7 +4,7 @@ import { action } from "@ember/object";
 import { service } from "@ember/service";
 import { defaultHomepage } from "discourse/lib/utilities";
 import { and, gt } from "truth-helpers";
-import { on } from "@ember/modifiers";
+import { on } from "@ember/modifier";
 import { ajax } from "discourse/lib/ajax";
 
 export default class BirthdaysAnniversariesBanner extends Component {
