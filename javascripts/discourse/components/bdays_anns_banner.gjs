@@ -25,7 +25,6 @@ export default class BirthdaysAnniversariesBanner extends Component {
   }
 
   async fetchAnnsData() {
-    console.log("Anns fetched!");
     const annsData = await ajax("/cakeday/anniversaries/today");
     const numAnns = annsData.total_rows_anniversaries;
     const usersAnns = [];
@@ -37,12 +36,11 @@ export default class BirthdaysAnniversariesBanner extends Component {
   }
 
   async fetchBdaysData() {
-    console.log("Bdays fetched!");
     const bdaysData = await ajax("/cakeday/birthdays/today");
     const numBdays = bdaysData.total_rows_birthdays;
     const usersBdays = [];
-    bdaysData.birthdays.forEach((anns) => {
-      usersAnns.push(settings.show_username? anns.username : anns.name);
+    bdaysData.birthdays.forEach((bday) => {
+      usersBdays.push(bday.username);
     });
     this.num_bdays = numBdays;
     this.bdays_list = usersBdays;
