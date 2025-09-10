@@ -50,6 +50,9 @@ export default class BirthdaysAnniversariesBanner extends Component {
     });
     this.num_bdays = numBdays;
     this.bdays_list = usersBdays;
+    setTimeout(() => {
+      console.log("Executed after 2 seconds");
+    }, 10000); // 2000 milliseconds = 2 seconds
     this.loading = false;
   }
 
