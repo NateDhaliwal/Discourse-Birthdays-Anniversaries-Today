@@ -5,14 +5,19 @@ banner_location:
         - above-main-container
         - above-site-header
         - below-site-header
-    description: "The plugin outlet location of the banner."
 
 banner_text_color:
     default: "var(--primary)"
     type: string
-    description: "The text color of the banner."
 
 banner_background_color:
     default: "var(--tertiary-low)"
     type: string
-    description: "The background color of the banner."
+
+anniversaries_text:
+    default: "%{count} users are celebrating their anniversaries today!"
+    type: string
+
+birthdays_text:
+    default: "%{count} users are celebrating their birthdays today!"
+    type: string
