@@ -25,6 +25,9 @@ export default class BirthdaysAnniversariesBanner extends Component {
   }
 
   async fetchAnnsData() {
+    setTimeout(() => {
+      console.log("Executed after 2 seconds");
+    }, 2000); // 2000 milliseconds = 2 seconds
     const annsData = await ajax("/cakeday/anniversaries/today");
     const numAnns = annsData.total_rows_anniversaries;
     const usersAnns = [];
@@ -36,6 +39,9 @@ export default class BirthdaysAnniversariesBanner extends Component {
   }
 
   async fetchBdaysData() {
+    setTimeout(() => {
+      console.log("Executed after 2 seconds");
+    }, 2000); // 2000 milliseconds = 2 seconds
     const bdaysData = await ajax("/cakeday/birthdays/today");
     const numBdays = bdaysData.total_rows_birthdays;
     const usersBdays = [];
