@@ -62,11 +62,11 @@ export default class BirthdaysAnniversariesBanner extends Component {
   }  
 
   <template>
-    {{this.showBanner}}
-    {{this.num_anns}}
-    {{this.num_bdays}}
-    {{this.isHomepage}}
     <div {{on "click" this.fetchAnnsData}}>
+      {{this.showBanner}}
+      {{this.num_anns}}
+      {{this.num_bdays}}
+      {{this.isHomepage}}
       {{#if (and this.showBanner this.isHomepage) }}
         <div class='bdaysannsbanner' id='birthdays_anniversaries_banner'>
           {{#if (gt this.num_anns 0) }}
