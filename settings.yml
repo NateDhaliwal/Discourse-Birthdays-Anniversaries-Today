@@ -19,7 +19,3 @@ banner_background_color:
     type: string
     description: "The background color of the banner."
 
-hide_unused_data:
-    default: false
-    type: bool
-    description: "Hide birthdays or anniversaries if there is no one celebrating them."
