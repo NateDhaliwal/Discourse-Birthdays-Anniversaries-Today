@@ -22,6 +22,7 @@ export default class BirthdaysAnniversariesBanner extends Component {
   }
 
   async fetchAnnsData() {
+    console.log("Anns fetched!");
     const annsData = await ajax("/cakeday/anniversaries/today");
     const numAnns = annsData.total_rows_anniversaries;
     const usersAnns = [];
@@ -30,9 +31,12 @@ export default class BirthdaysAnniversariesBanner extends Component {
     })
     this.num_anns = numAnns;
     this.anns_list = usersAnns;
+    console.log(numAnns);
+    console.log(usersAnns);
   }
 
   async fetchBdaysData() {
+    console.log("Bdays fetched!");
     const bdaysData = await ajax("/cakeday/birthdays/today");
     const numBdays = bdaysData.total_rows_birthdays;
     const usersBdays = [];
@@ -41,6 +45,8 @@ export default class BirthdaysAnniversariesBanner extends Component {
     })
     this.num_bdays = numBdays;
     this.bdays_list = usersBdays;
+    console.log(numBdays);
+    console.log(usersBdays);
   }
 
   get isHomepage() {
