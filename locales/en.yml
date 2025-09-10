@@ -1,0 +1,9 @@
+en:
+  theme_metadata:
+    description: "A banner to display users with birthdays and/or anniversaries daily"
+    settings:
+      banner_location: "The plugin outlet location of the banner."
+      banner_text_color: "The text color of the banner."
+      banner_background_color: "The background color of the banner."
+      anniversaries_text: "Use %{count} as a placeholder for the number of users celebrating their anniversary."
+      birthdays_text: "Use %{count} as a placeholder for the number of users celebrating their birthday."
