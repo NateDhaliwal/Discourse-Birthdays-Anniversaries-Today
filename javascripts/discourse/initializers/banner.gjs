@@ -57,9 +57,9 @@ export default apiInitializer((api) => {
       }  
 
       <template>
-        {{#if and this.showBanner this.isHomepage}}
+        {{#if (and this.showBanner this.isHomepage) }}
           <div class='bdaysannsbanner' id='birthdays_anniversaries_banner'>
-            {{#if gt this.num_anns 0}}
+            {{#if (gt this.num_anns 0) }}
               <div class='anns'>
                 <p>{{this.num_anns}} users are celebrating their anniversary today!</p>
                 {{#each this.anns_list as |username_name|}}
@@ -68,7 +68,7 @@ export default apiInitializer((api) => {
               </div>
             {{/if}}
             <br />
-            {{#if gt this.num_bdays 0}}
+            {{#if (gt this.num_bdays 0) }}
               <div class='bdays'>
                 <p>{{this.num_bdays}} users are celebrating their birthday today!</p>
                 {{#each this.bdays_list as |username_name|}}
