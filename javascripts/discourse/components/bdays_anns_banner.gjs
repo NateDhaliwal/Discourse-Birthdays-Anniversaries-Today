@@ -4,6 +4,7 @@ import { action } from "@ember/object";
 import { service } from "@ember/service";
 import { defaultHomepage } from "discourse/lib/utilities";
 import { and, gt } from "truth-helpers";
+import { on } from "@ember/modifiers";
 import { ajax } from "discourse/lib/ajax";
 
 export default class BirthdaysAnniversariesBanner extends Component {
@@ -65,26 +66,28 @@ export default class BirthdaysAnniversariesBanner extends Component {
     {{this.num_anns}}
     {{this.num_bdays}}
     {{this.isHomepage}}
-    {{#if (and this.showBanner this.isHomepage) }}
-      <div class='bdaysannsbanner' id='birthdays_anniversaries_banner'>
-        {{#if (gt this.num_anns 0) }}
-          <div class='anns'>
-            <p>{{this.num_anns}} users are celebrating their anniversary today!</p>
-            {{#each this.anns_list as |username_name|}}
-              <span><a class='mention'>{{username_name}}</a></span>
-            {{/each}}
-          </div>
-        {{/if}}
-        <br />
-        {{#if (gt this.num_bdays 0) }}
-          <div class='bdays'>
-            <p>{{this.num_bdays}} users are celebrating their birthday today!</p>
-            {{#each this.bdays_list as |username_name|}}
-              <span><a class='mention'>{{username_name}}</a></span>
-            {{/each}}
-          </div>
-        {{/if}}
-      </div>
-    {{/if}}
+    <div {{on "click" this.fetchAnnsData}}>
+      {{#if (and this.showBanner this.isHomepage) }}
+        <div class='bdaysannsbanner' id='birthdays_anniversaries_banner'>
+          {{#if (gt this.num_anns 0) }}
+            <div class='anns'>
+              <p>{{this.num_anns}} users are celebrating their anniversary today!</p>
+              {{#each this.anns_list as |username_name|}}
+                <span><a class='mention'>{{username_name}}</a></span>
+              {{/each}}
+            </div>
+          {{/if}}
+          <br />
+          {{#if (gt this.num_bdays 0) }}
+            <div class='bdays'>
+              <p>{{this.num_bdays}} users are celebrating their birthday today!</p>
+              {{#each this.bdays_list as |username_name|}}
+                <span><a class='mention'>{{username_name}}</a></span>
+              {{/each}}
+            </div>
+          {{/if}}
+        </div>
+      {{/if}}
+    </div>
   </template>
 }
