@@ -1,5 +1,4 @@
 import Component from "@glimmer/component";
-import { apiInitializer } from "discourse/lib/api";
 import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
 import { service } from "@ember/service";
@@ -7,7 +6,7 @@ import { defaultHomepage } from "discourse/lib/utilities";
 import { and, gt } from "truth-helpers";
 import { ajax } from "discourse/lib/ajax";
 
-export default class BdaysAnnsBanner extends Component {
+export default class BirthdaysAnniversariesBanner extends Component {
   // Init data
   num_anns = 0;
   anns_list = [];
@@ -50,6 +49,8 @@ export default class BdaysAnnsBanner extends Component {
   }
 
   get showBanner() {
+    this.fetchAnnsData();
+    this.fetchBdaysData();
     return this.num_bdays > 0 || this.num_anns > 0;
   }  
 
@@ -57,6 +58,7 @@ export default class BdaysAnnsBanner extends Component {
     {{this.showBanner}}
     {{this.num_anns}}
     {{this.num_bdays}}
+    {{this.isHomepage}}
     {{#if (and this.showBanner this.isHomepage) }}
       <div class='bdaysannsbanner' id='birthdays_anniversaries_banner'>
         {{#if (gt this.num_anns 0) }}
